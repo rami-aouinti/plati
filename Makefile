@@ -107,6 +107,12 @@ composer-install:
 composer-update:
 	@make exec-bash cmd="COMPOSER_MEMORY_LIMIT=-1 composer update"
 
+composer-install-security:
+	@make exec-bash cmd="composer require symfony/security-bundle"
+
+composer-install-csrf:
+	@make exec-bash cmd="composer require symfony/security-csrf"
+
 info:
 	@make exec cmd="bin/console --version"
 	@make exec cmd="php --version"
@@ -134,6 +140,25 @@ migrate-no-test:
 migrate:
 	@make exec cmd="php bin/console doctrine:migrations:migrate --no-interaction --all-or-nothing"
 	@make exec cmd="php bin/console doctrine:migrations:migrate --no-interaction --all-or-nothing --env=test"
+
+
+migration-all:
+	@make exec cmd="php bin/console doctrine:database:drop --if-exists --force"
+	@make exec cmd="php bin/console doctrine:database:create"
+	@make exec cmd="php bin/console doctrine:schema:update --force"
+	@make exec cmd="php bin/console doctrine:fixtures:load -n"
+
+migration-all-test:
+	@make exec cmd="php bin/console doctrine:database:drop --if-exists --force --env=test"
+	@make exec cmd="php bin/console doctrine:database:create --env=test"
+	@make exec cmd="php bin/console doctrine:schema:update --force --env=test"
+	@make exec cmd="php bin/console doctrine:fixtures:load -n --env=test"
+
+add-fixtures:
+	@make exec cmd="php bin/console make:fixtures"
+
+clean:
+	@make exec cmd="php bin/console cache:clear"
 
 fixtures:
 	@make exec cmd="php bin/console doctrine:fixtures:load --env=test"

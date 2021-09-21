@@ -1,0 +1,64 @@
+<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+    <ul class="navbar-nav  justify-content-end">
+        <li class="nav-item dropdown pe-2">
+            <a href="javascript:;" class="nav-link text-body p-0 position-relative" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="material-icons me-sm-1">
+                    account_circle
+                </i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end p-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="{{ path('app_login')}}">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="my-auto">
+                        <span class="material-icons">
+                          login
+                        </span>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-sm font-weight-normal mb-0">
+                                    Login
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="{{ path('user_registration')}}">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="my-auto">
+                        <span class="material-icons">
+                          assignment
+                        </span>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-sm font-weight-normal mb-0">
+                                    Register
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="dropdown-item border-radius-md" href="{{ path('app_logout')}}">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="my-auto">
+                        <span class="material-icons">
+                          logout
+                        </span>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-sm font-weight-normal mb-0">
+                                    Logout
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</div>
