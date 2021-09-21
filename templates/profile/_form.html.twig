@@ -1,0 +1,69 @@
+{{ form_start(form) }}
+<!-- Card Basic Info -->
+<div class="card mt-4" id="basic-info">
+    <div class="card-header">
+        <h5>Basic Info</h5>
+    </div>
+    <div class="card-body pt-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group input-group-static">
+                    <label>First Name</label>
+                    {{ form_widget(form.firstname) }}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group input-group-static">
+                    <label>Last Name</label>
+                    {{ form_widget(form.lastname) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-6">
+                <label class="form-label mt-4 ms-0">I'm</label>
+                {{ form_widget(form.sex) }}
+            </div>
+            <div class="col-sm-8">
+                <label class="form-label mt-4 ms-0">Birth Date</label>
+                {{ form_widget(form.birthday) }}
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6">
+                <div class="input-group input-group-static">
+                    <label>Your location</label>
+                    {{ form_widget(form.location) }}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group input-group-static">
+                    <label>Phone Number</label>
+                    {{ form_widget(form.phone) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+                <label class="form-label mt-4 ms-0">Language</label>
+                <select class="form-control" name="choices-language" id="choices-language">
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Spanish">Spanish</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label mt-4">Skills</label>
+                <input class="form-control" id="choices-skills" type="text" value="vuejs, angular, react" placeholder="Enter something" />
+            </div>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+    <div class="text-center">
+        <button class="btn bg-gradient-danger mb-0 ms-2" type="submit" name="button">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+
+
+
+{{ form_end(form) }}

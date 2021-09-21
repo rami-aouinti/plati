@@ -41,22 +41,56 @@
                     </a>
                 </li>
                 {% else %}
-                <li>
-                    <a class="dropdown-item border-radius-md" href="{{ path('app_logout')}}">
-                        <div class="d-flex align-items-center py-1">
-                            <div class="my-auto">
+                    <li>
+                        <a class="dropdown-item border-radius-md" href="{{ path('profile_index')}}">
+                            <div class="d-flex align-items-center py-1">
+                                <div class="my-auto">
+                        <span class="material-icons">
+                            person_outline
+                        </span>
+                                </div>
+                                <div class="ms-2">
+                                    <h6 class="text-sm font-weight-normal mb-0">
+                                        Profile
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        {% if app.user.profile.id is defined %}
+                            <a class="dropdown-item border-radius-md" href="{{ path('profile_edit', {id: app.user.profile.id})}}">
+                            {% else %}
+                            <a class="dropdown-item border-radius-md" href="{{ path('profile_new')}}">
+                        {% endif %}
+                            <div class="d-flex align-items-center py-1">
+                                <div class="my-auto">
+                        <span class="material-icons">manage_accounts</span>
+                                </div>
+                                <div class="ms-2">
+                                    <h6 class="text-sm font-weight-normal mb-0">
+                                        Setting
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item border-radius-md" href="{{ path('app_logout')}}">
+                            <div class="d-flex align-items-center py-1">
+                                <div class="my-auto">
                         <span class="material-icons">
                           logout
                         </span>
+                                </div>
+                                <div class="ms-2">
+                                    <h6 class="text-sm font-weight-normal mb-0">
+                                        Logout
+                                    </h6>
+                                </div>
                             </div>
-                            <div class="ms-2">
-                                <h6 class="text-sm font-weight-normal mb-0">
-                                    Logout
-                                </h6>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 {% endif %}
             </ul>
         </li>

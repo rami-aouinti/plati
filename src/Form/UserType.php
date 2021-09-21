@@ -24,8 +24,7 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password', 'attr' => [
-                    'class' => 'form-control',
-                    'id' =>'textboxid'
+                    'class' => 'form-control'
                 ]),
                 'second_options' => array('label' => 'Repeat Password', 'attr' => [
                     'class' => 'form-control'
