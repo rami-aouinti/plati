@@ -37,7 +37,12 @@ class Comment
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="related_comment")
      */
-    private ArrayCollection $comments;
+    private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
+     */
+    private ?Post $post;
 
     public function __toString(): string
     {
@@ -118,5 +123,21 @@ class Comment
         }
 
         return $this;
+    }
+
+    /**
+     * @return Post|null
+     */
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param Post|null $post
+     */
+    public function setPost(?Post $post): void
+    {
+        $this->post = $post;
     }
 }

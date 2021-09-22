@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\Profile;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -38,10 +39,20 @@ class PostFixtures extends Fixture
             ));
             $manager->persist($user);
 
+            $profile = new Profile();
+            $profile->setFirstname($this->faker->firstName);
+            $profile->setLastname($this->faker->lastName);
+            $profile->setSex($this->faker->word);
+            $profile->setBirthday($this->faker->dateTime);
+            $profile->setLocation($this->faker->country);
+            $profile->setPhone($this->faker->phoneNumber);
+            $profile->setUser($user);
+            $manager->persist($profile);
+
             for($j = 0; $j < 10; $j++)
             {
                 $post = new Post();
-                $post->setTitle($this->faker->title);
+                $post->setTitle($this->faker->word);
                 $post->setDescription($this->faker->realText(100));
                 $post->setSlug($this->faker->title . $i . $j);
                 $post->setActive($this->faker->boolean());
@@ -54,6 +65,7 @@ class PostFixtures extends Fixture
                     $comment = new Comment();
                     $comment->setAuthor($user);
                     $comment->setComment($this->faker->realText(30));
+                    $comment->setPost($post);
                     $manager->persist($comment);
                 }
             }

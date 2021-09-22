@@ -3,6 +3,111 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+    <div class="col-md-4">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn bg-gradient-warning btn-block mb-3" data-bs-toggle="modal" data-bs-target="#exampleModalMessage">
+            Add Post
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+            {{ form_start(form) }}
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title font-weight-normal" id="exampleModalLabel">New Post</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        {{ form_widget(form.active) }}
+                                        <label class="custom-control-label" for="customCheck1">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group input-group-outline my-3">
+                                <label class="form-label">Title</label>
+                                {{ form_widget(form.title) }}
+                            </div>
+                            <div class="input-group input-group-dynamic">
+                                {{ form_widget(form.description) }}
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-gradient-warning">{{ button_label|default('Save') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-1">
+        </div>
+            <div class="col-md-10 mb-6">
+                <div class="card" data-animation="true">
+                    <div class="card-header p-0 position-relative mx-1 z-index-2">
+                        <a class="d-block blur-shadow-image">
+                            <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                        </a>
+                        <div class="colored-shadow" style="background-image: url(https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg);"></div>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="d-flex mt-n6 mx-auto">
+                            <a class="btn btn-link text-primary ms-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Refresh">
+                                <i class="material-icons text-lg">refresh</i>
+                            </a>
+                            <button class="btn btn-link text-info me-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                <i class="material-icons text-lg">edit</i>
+                            </button>
+                        </div>
+                        <h5 class="font-weight-normal mt-3">
+                            <a href="javascript:;">{{ post.title }}</a>
+                        </h5>
+                        <p class="mb-0">
+                            {{ post.description }}
+                        </p>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="input-group input-group-dynamic mb-4">
+                                <label class="form-label">Comment</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <ul class="list-group">
+                                {% for comment in post.comments %}
+                                <li class="list-group-item">{{ comment.author.profile.firstname }} : {{ comment.comment }} </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="card-footer d-flex">
+                        <p class="font-weight-normal my-auto">$899/night</p>
+                        <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">place</i>
+                        <p class="text-sm my-auto"> Barcelona, Spain</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
