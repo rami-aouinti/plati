@@ -9,13 +9,24 @@ use App\Tests\FunctionalTestCase;
 class ExampleTest extends FunctionalTestCase
 {
     /**
-     * A basic test example.
+     * A login test.
      */
-    public function testBasicTest(): void
+    public function testLogin(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/command-scheduler/list');
+        $client->request('GET', '/login');
         // check for 401 due to allow only for user with admin role
-        $this->assertSame(401, $client->getResponse()->getStatusCode());
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * A registration test.
+     */
+    public function testRegister(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/register');
+        // check for 401 due to allow only for user with admin role
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
     }
 }

@@ -113,6 +113,9 @@ composer-install-security:
 composer-install-csrf:
 	@make exec-bash cmd="composer require symfony/security-csrf"
 
+composer-install-faker:
+	@make exec-bash cmd="composer require fzaninotto/faker --dev"
+
 info:
 	@make exec cmd="bin/console --version"
 	@make exec cmd="php --version"
